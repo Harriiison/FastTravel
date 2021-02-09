@@ -1,0 +1,111 @@
+# Wizry Transport Configuration
+locations:
+  # Train
+  "chbtrain":
+    name: "Camp Half Blood Station"
+    world: "world"
+    x: 74.50
+    y: 64.00
+    z: 306.50
+    npc: 7
+    transport: "train"
+    time: 45
+    permission: "wizry.transport.chbtrain"
+    allowedLocations:
+      - "cjtrain"
+    dialogue:
+      - "It's a nice day isn't it."
+      - "Yawn, I'm tired."
+      - "Next Stop: Camp Half Blood"
+  "cjtrain":
+    name: "Camp Jupiter Station"
+    world: "world"
+    x: 184.50
+    y: 63.00
+    z: 368.50
+    npc: 6
+    transport: "train"
+    time: 45
+    permission: "wizry.transport.cjtrain"
+    allowedLocations:
+      - "chbtrain"
+    dialogue:
+      - "All aboard!"
+      - "Camp Jupiter here we come..."
+      - "Sit back, the ride might take a while."
+  # Bus
+  "esbbus":
+    name: "Empire State Building"
+    world: "world"
+    x: 171.50
+    y: 63.00
+    z: 376.50
+    npc: 2
+    transport: "bus"
+    time: 0
+    permission: "wizry.transport.esbbus"
+    allowedLocations:
+      - "sbbus"
+      - "parkbus"
+      - "brookbus"
+    dialogue:
+      -
+  "sbbus":
+    name: "Central Park Starbucks"
+    world: "world"
+    x: 156.50
+    y: 64.00
+    z: 381.50
+    npc: 3
+    transport: "bus"
+    time: 0
+    permission: "wizry.transport.sbbus"
+    allowedLocations:
+      - "esbbus"
+      - "parkbus"
+      - "brookbus"
+    dialogue:
+      -
+  "parkbus":
+    name: "Cherry Tree Park"
+    world: "world"
+    x: 158.50
+    y: 75.00
+    z: 424.50
+    npc: 4
+    transport: "bus"
+    time: 0
+    permission: "wizry.transport.parkbus"
+    allowedLocations:
+      - "esbbus"
+      - "sbbus"
+      - "brookbus"
+    dialogue:
+      -
+  "brookbus":
+    name: "Brooklyn House"
+    world: "world"
+    x: 174.50
+    y: 65.00
+    z: 403.50
+    npc: 5
+    transport: "bus"
+    time: 0
+    permission: "wizry.transport.brookbus"
+    allowedLocations:
+      - "esbbus"
+      - "sbbus"
+      - "parkbus"
+    dialogue:
+      -
+
+transports:
+  "train":
+    name: "Train"
+    world: "world"
+    x: 31.50
+    y: 101
+    z: 148.50
+    npc: 8
+  "bus":
+    name: "New York Bus"

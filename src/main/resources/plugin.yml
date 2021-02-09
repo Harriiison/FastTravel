@@ -1,0 +1,16 @@
+name: WizryTransport
+version: 1.0.0
+main: me.harriiison.transport.WizryTransport
+author: Harrison
+description: A transport system for Wizry.
+depend: [Citizens]
+
+commands:
+  transport:
+    usage: /transport reload
+    description: Reload the Wizry Transport config
+
+permissions:
+  wizry.transport:
+    description: Use this plugin to access locations
+    default: op
