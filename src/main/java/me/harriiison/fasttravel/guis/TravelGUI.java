@@ -1,19 +1,15 @@
-package me.harriiison.transport.guis;
+package me.harriiison.fasttravel.guis;
 
-import me.harriiison.transport.WizryTransport;
-import me.harriiison.transport.base.TransportMethod;
-import me.harriiison.transport.base.WarpLocation;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import me.harriiison.fasttravel.FastTravel;
+import me.harriiison.fasttravel.base.WarpLocation;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.tags.ItemTagType;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,8 +17,8 @@ import java.util.List;
 
 public class TravelGUI {
 
-    private WizryTransport plugin;
-    public TravelGUI(WizryTransport instance) {
+    private FastTravel plugin;
+    public TravelGUI(FastTravel instance) {
         this.plugin = instance;
     }
 
@@ -40,7 +36,7 @@ public class TravelGUI {
     }
 
     public Inventory createTravelGUI(Player player, String transportName, List<WarpLocation> destinations) {
-        Inventory inv = Bukkit.createInventory(player, resizeInventory(destinations), transportName);
+        Inventory inv = Bukkit.createInventory(player, resizeInventory(destinations), ChatColor.translateAlternateColorCodes('&', transportName));
 
         ItemStack barrier = new ItemStack(Material.BARRIER);
         ItemMeta bMeta = barrier.getItemMeta();
@@ -67,9 +63,9 @@ public class TravelGUI {
             locMeta.addEnchant(Enchantment.DURABILITY, 1, true);
             locMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS);
 
-            // Add location tag (1.13.2)
-            NamespacedKey key = new NamespacedKey(plugin, "transport");
-            locMeta.getCustomTagContainer().setCustomTag(key, ItemTagType.STRING, location.getID());
+            // Add location details
+            NamespacedKey key = new NamespacedKey(plugin, "locationID");
+            locMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, location.getID());
 
             ArrayList<String> lore = new ArrayList<>();
             lore.add(ChatColor.GREEN + "Click to travel to this location.");
@@ -84,6 +80,7 @@ public class TravelGUI {
     }
 
     public void openTravelGUI(Player player, Inventory inv) {
+        player.playSound(player.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1f, 1f);
         player.openInventory(inv);
     }
 }

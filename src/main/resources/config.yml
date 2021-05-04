@@ -1,111 +1,66 @@
-# Wizry Transport Configuration
+# Fast Travel Configuration
+prefix: ""
 locations:
-  # Train
-  "chbtrain":
-    name: "Camp Half Blood Station"
-    world: "world"
-    x: 74.50
-    y: 64.00
-    z: 306.50
-    npc: 7
-    transport: "train"
-    time: 45
-    permission: "wizry.transport.chbtrain"
-    allowedLocations:
-      - "cjtrain"
-    dialogue:
-      - "It's a nice day isn't it."
-      - "Yawn, I'm tired."
-      - "Next Stop: Camp Half Blood"
-  "cjtrain":
-    name: "Camp Jupiter Station"
-    world: "world"
-    x: 184.50
-    y: 63.00
-    z: 368.50
-    npc: 6
-    transport: "train"
-    time: 45
-    permission: "wizry.transport.cjtrain"
-    allowedLocations:
-      - "chbtrain"
-    dialogue:
-      - "All aboard!"
-      - "Camp Jupiter here we come..."
-      - "Sit back, the ride might take a while."
   # Bus
-  "esbbus":
-    name: "Empire State Building"
+  "spawnbus":
+    name: "Spawn"
     world: "world"
-    x: 171.50
-    y: 63.00
-    z: 376.50
-    npc: 2
+    x: 242
+    y: 4
+    z: 50
+    npc: 0
     transport: "bus"
     time: 0
-    permission: "wizry.transport.esbbus"
+    permission: "vynto.core.travel"
     allowedLocations:
-      - "sbbus"
-      - "parkbus"
-      - "brookbus"
+      - "frostbus"
     dialogue:
       -
-  "sbbus":
-    name: "Central Park Starbucks"
+  "frostbus":
+    name: "New Frost City"
     world: "world"
-    x: 156.50
-    y: 64.00
-    z: 381.50
+    x: 282
+    y: 4
+    z: 234
     npc: 3
     transport: "bus"
     time: 0
-    permission: "wizry.transport.sbbus"
+    permission: "vynto.core.travel"
     allowedLocations:
-      - "esbbus"
-      - "parkbus"
-      - "brookbus"
+      - "spawnbus"
+      - "blacksmithbus"
+      - "joebus"
     dialogue:
       -
-  "parkbus":
-    name: "Cherry Tree Park"
+  "blacksmithbus":
+    name: "The Blacksmith"
     world: "world"
-    x: 158.50
-    y: 75.00
-    z: 424.50
+    x: 339
+    y: 4
+    z: 229
     npc: 4
     transport: "bus"
     time: 0
-    permission: "wizry.transport.parkbus"
+    permission: "vynto.core.travel"
     allowedLocations:
-      - "esbbus"
-      - "sbbus"
-      - "brookbus"
+      - "frostbus"
     dialogue:
       -
-  "brookbus":
-    name: "Brooklyn House"
+  "joebus":
+    name: "Joe's Farm"
     world: "world"
-    x: 174.50
-    y: 65.00
-    z: 403.50
+    x: 255
+    y: 5
+    z: 257
     npc: 5
     transport: "bus"
     time: 0
-    permission: "wizry.transport.brookbus"
+    permission: "vynto.core.travel"
     allowedLocations:
-      - "esbbus"
-      - "sbbus"
-      - "parkbus"
+      - "frostbus"
     dialogue:
       -
 
 transports:
-  "train":
-    name: "Train"
-    world: "world"
-    x: 31.50
-    y: 101
-    z: 148.50
-    npc: 8
   "bus":
-    name: "New York Bus"
+    name: "Harrison's Big RED Bus"

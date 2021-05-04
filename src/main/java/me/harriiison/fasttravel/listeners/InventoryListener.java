@@ -1,8 +1,8 @@
-package me.harriiison.transport.listeners;
+package me.harriiison.fasttravel.listeners;
 
-import me.harriiison.transport.WizryTransport;
-import me.harriiison.transport.base.TransportMethod;
-import me.harriiison.transport.base.WarpLocation;
+import me.harriiison.fasttravel.FastTravel;
+import me.harriiison.fasttravel.base.TransportMethod;
+import me.harriiison.fasttravel.base.WarpLocation;
 import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -11,8 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
-import org.bukkit.inventory.meta.tags.ItemTagType;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -20,11 +20,9 @@ import java.util.Random;
 
 public class InventoryListener implements Listener {
 
-    private WizryTransport plugin;
-    private String prefix;
-    public InventoryListener(WizryTransport instance) {
+    private FastTravel plugin;
+    public InventoryListener(FastTravel instance) {
         this.plugin = instance;
-        this.prefix = "&f&l[&3Wizry&f&l] ";
     }
 
     @EventHandler
@@ -64,15 +62,15 @@ public class InventoryListener implements Listener {
         if (!locItem.hasItemMeta()) return;
         ItemMeta locMeta = locItem.getItemMeta();
 
-        // Check for transport tag (1.13.2)
-        NamespacedKey key = new NamespacedKey(plugin, "transport");
-        CustomItemTagContainer tagContainer = locMeta.getCustomTagContainer();;
+        // Fetch location tab
+        NamespacedKey key = new NamespacedKey(plugin, "locationID");
+        PersistentDataContainer tagContainer = locMeta.getPersistentDataContainer();;
 
-        // Not a wizry transport compass
-        if (!tagContainer.hasCustomTag(key, ItemTagType.STRING)) {
+        // Not a valid location item
+        if (!tagContainer.has(key, PersistentDataType.STRING)) {
             return;
         }
-        String locationID = tagContainer.getCustomTag(key, ItemTagType.STRING);
+        String locationID = tagContainer.get(key, PersistentDataType.STRING);
 
         WarpLocation location =  plugin.getLocationManager().getLocation(locationID);
         if (location == null) return;
@@ -104,9 +102,9 @@ public class InventoryListener implements Listener {
         }
     }
 
-    public void teleportPlayer(Player player, Location location) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&eTravelling..."));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 60, 1));
+    private void teleportPlayer(Player player, Location location) {
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getPrefix() + "&eTravelling..."));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1));
         player.teleport(location);
         player.playSound(location, Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 0.75f);
     }

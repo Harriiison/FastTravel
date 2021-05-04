@@ -1,16 +1,16 @@
-name: WizryTransport
+name: FastTravel
 version: 1.0.0
-main: me.harriiison.transport.WizryTransport
+main: me.harriiison.fasttravel.FastTravel
 author: Harrison
-description: A transport system for Wizry.
+description: An interactive fast travel plugin allowing players to interacts with transports and travel across the world.
 depend: [Citizens]
 
 commands:
-  transport:
-    usage: /transport reload
-    description: Reload the Wizry Transport config
+  fasttravel:
+    usage: /fasttravel reload
+    description: Reload the Fast Travel config
 
 permissions:
-  wizry.transport:
+  fasttravel.admin:
     description: Use this plugin to access locations
     default: op

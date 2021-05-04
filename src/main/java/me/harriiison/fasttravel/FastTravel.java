@@ -1,20 +1,26 @@
-package me.harriiison.transport;
+package me.harriiison.fasttravel;
 
-import me.harriiison.transport.base.LocationManager;
-import me.harriiison.transport.base.TransportManager;
-import me.harriiison.transport.commands.ReloadCommand;
-import me.harriiison.transport.listeners.InventoryListener;
-import me.harriiison.transport.listeners.NPCInteractEvent;
+import me.harriiison.fasttravel.base.LocationManager;
+import me.harriiison.fasttravel.base.TransportManager;
+import me.harriiison.fasttravel.commands.ReloadCommand;
+import me.harriiison.fasttravel.listeners.InventoryListener;
+import me.harriiison.fasttravel.listeners.NPCInteractEvent;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class WizryTransport extends JavaPlugin {
+public class FastTravel extends JavaPlugin {
 
     private LocationManager locationManager;
     private TransportManager transportManager;
 
+    private String prefix;
+
     @Override
     public void onEnable() {
         saveDefaultConfig();
+
+        // Load Prefix
+        setPrefix();
 
         // Load Transports
         transportManager = new TransportManager(this);
@@ -25,7 +31,7 @@ public class WizryTransport extends JavaPlugin {
         locationManager.loadLocations();
 
         // Load Command
-        getCommand("transport").setExecutor(new ReloadCommand(this));
+        getCommand("fasttravel").setExecutor(new ReloadCommand(this));
 
         // Load Listeners
         getServer().getPluginManager().registerEvents(new NPCInteractEvent(this), this);
@@ -38,5 +44,13 @@ public class WizryTransport extends JavaPlugin {
 
     public TransportManager getTransportManager() {
         return transportManager;
+    }
+
+    private void setPrefix() {
+        prefix = ChatColor.translateAlternateColorCodes('&', getConfig().getString("chatPrefix", "&f[&2Fast Travel&f] "));
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 }

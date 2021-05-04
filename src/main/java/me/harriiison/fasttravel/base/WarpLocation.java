@@ -1,6 +1,6 @@
-package me.harriiison.transport.base;
+package me.harriiison.fasttravel.base;
 
-import me.harriiison.transport.WizryTransport;
+import me.harriiison.fasttravel.FastTravel;
 import org.bukkit.Location;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class WarpLocation {
     private List<String> allowedLocations;
     private List<String> dialogue;
 
-    public WarpLocation(WizryTransport plugin, String id, String name, Location location, int npcID, String transport, int time, String permission, List<String> allowedLocations, List<String> dialogue) {
+    public WarpLocation(FastTravel plugin, String id, String name, Location location, int npcID, String transport, int time, String permission, List<String> allowedLocations, List<String> dialogue) {
         this.id = id;
         this.name = name;
         this.location = location;

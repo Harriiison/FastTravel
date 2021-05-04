@@ -1,4 +1,4 @@
-package me.harriiison.transport.base;
+package me.harriiison.fasttravel.base;
 
 import org.bukkit.Location;
 

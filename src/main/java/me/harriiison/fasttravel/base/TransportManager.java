@@ -1,6 +1,6 @@
-package me.harriiison.transport.base;
+package me.harriiison.fasttravel.base;
 
-import me.harriiison.transport.WizryTransport;
+import me.harriiison.fasttravel.FastTravel;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -10,10 +10,10 @@ import java.util.List;
 
 public class TransportManager {
 
-    private WizryTransport plugin;
+    private FastTravel plugin;
     private List<TransportMethod> transports;
 
-    public TransportManager(WizryTransport instance) {
+    public TransportManager(FastTravel instance) {
         this.plugin = instance;
     }
 
